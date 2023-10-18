@@ -8,4 +8,5 @@ import java.util.Optional;
 public interface ResultRepository extends JpaRepository< Result, Integer> {
 
     public Optional<Result> findTopByOrderByIdDesc();
+
 }

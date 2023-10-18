@@ -7,6 +7,8 @@ import ru.app.model.JsonParam;
 import ru.app.model.Result;
 import ru.app.service.CalculationService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/calc")
 @AllArgsConstructor
@@ -14,7 +16,7 @@ public class CalcController {
     private CalculationService calculationService;
 
     @PostMapping("/params")
-    public ResponseEntity<Result> paramCalculate(@RequestParam("params") String params) {
+    public ResponseEntity<Result> paramCalculate(@RequestParam("value") String params) {
         return ResponseEntity.ok(calculationService.calculateParams(params));
     }
 
@@ -28,8 +30,8 @@ public class CalcController {
         return ResponseEntity.of(calculationService.getLastRecord());
     }
 
-    @GetMapping("logs")
-    public ResponseEntity<Result> getAll() {
-        return ResponseEntity.of(calculationService.getLastRecord());
+    @GetMapping("/logs")
+    public ResponseEntity<List<Result>> getAll() {
+        return ResponseEntity.ok(calculationService.getAll());
     }
 }
